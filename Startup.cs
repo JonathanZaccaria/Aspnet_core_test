@@ -16,6 +16,7 @@ namespace aspnet_Core_test
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDirectoryBrowser();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -28,10 +29,18 @@ namespace aspnet_Core_test
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseStaticFiles();
+            app.UseDirectoryBrowser();
+
+
+
             app.Run(async (context) =>
             {
                 await context.Response.WriteAsync("Hello World! " + DateTime.Now);
+                
             });
+
+            
         }
     }
 }
